@@ -2,7 +2,6 @@ package com.aap.compose.ebay.intvw.screens.earthquake
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,21 +22,21 @@ import com.aap.compose.ebay.intvw.repo.GenericResponse
 fun EqList(onRowClick: (Int) -> Unit, viewModel: EqListViewModel = hiltViewModel()) {
     val earthquakes = viewModel.earthquakes.observeAsState()
     LaunchedEffect(key1 = Unit) {
-        viewModel.fetchEarthquakeList()
+        viewModel.fetchEarthquakeList(false)
     }
     when (earthquakes.value) {
         is GenericResponse.GenericError -> {
             showError()
         }
         is GenericResponse.GenericSuccess -> {
-            showEarthquakeList(onRowClick, (earthquakes.value as GenericResponse.GenericSuccess).earthquakes)
+            ShowEarthquakeList(onRowClick, (earthquakes.value as GenericResponse.GenericSuccess).earthquakes)
         }
         null -> showError()
     }
 }
 
 @Composable
-fun showEarthquakeList(onRowClick: (Int) -> Unit, list: List<EqDataVO>) {
+fun ShowEarthquakeList(onRowClick: (Int) -> Unit, list: List<EqDataVO>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         this.itemsIndexed(list, key = { _, earthquake -> earthquake.eqId }) { index, earthquake ->
             RenderRow(onRowClick, index, earthquake)
@@ -51,7 +50,7 @@ fun RenderRow(onRowClick: (Int) -> Unit, index: Int, earthquake: EqDataVO) {
     Column(modifier = Modifier.clickable {
         onRowClick(index)
     }) {
-        Text("${earthquake.eqId}")
+        Text(earthquake.eqId)
 
         Text("${earthquake.magnitude}")
 

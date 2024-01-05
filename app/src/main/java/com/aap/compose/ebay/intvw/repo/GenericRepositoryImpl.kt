@@ -1,9 +1,7 @@
 package com.aap.compose.ebay.intvw.repo
 
 import com.aap.compose.ebay.intvw.data.EqDataVO
-import com.aap.compose.ebay.intvw.data.GenericDataVO
 import com.aap.compose.ebay.intvw.network.EqService
-import com.aap.compose.ebay.intvw.network.GenericService
 import org.jetbrains.annotations.VisibleForTesting
 import javax.inject.Inject
 

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aap.compose.ebay.intvw.data.EqDataVO
-import com.aap.compose.ebay.intvw.data.GenericDataVO
 import com.aap.compose.ebay.intvw.repo.GenericRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

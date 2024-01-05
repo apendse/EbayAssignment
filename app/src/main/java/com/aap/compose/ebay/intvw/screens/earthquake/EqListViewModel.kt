@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aap.compose.ebay.intvw.data.EqDataVO
 import com.aap.compose.ebay.intvw.repo.GenericRepository
 import com.aap.compose.ebay.intvw.repo.GenericResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +18,10 @@ class EqListViewModel @Inject constructor(private val genericRepository: Generic
     val earthquakes: LiveData<GenericResponse>
         get() = _earthquakes
 
-    fun fetchEarthquakeList() {
+    fun fetchEarthquakeList(isForced: Boolean) {
+        if (!isForced && _earthquakes.value is GenericResponse.GenericSuccess) {
+            return
+        }
         viewModelScope.launch {
             _earthquakes.postValue(genericRepository.fetchEarthquakeList())
         }

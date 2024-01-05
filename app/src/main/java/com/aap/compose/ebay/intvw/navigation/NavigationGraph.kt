@@ -10,7 +10,6 @@ import androidx.navigation.navArgument
 import com.aap.compose.ebay.intvw.navigation.NavigationDestinations.MEME_INDEX
 import com.aap.compose.ebay.intvw.screens.detail.EarthquakeDetail
 import com.aap.compose.ebay.intvw.screens.earthquake.EqList
-import com.aap.compose.ebay.intvw.screens.home.TopMemes
 
 @Composable
 fun NavigationGraph(modifier: Modifier, navController: NavHostController) {
